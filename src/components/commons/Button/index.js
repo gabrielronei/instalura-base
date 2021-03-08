@@ -1,18 +1,18 @@
 import styled, { css } from 'styled-components';
-// import theme from '../../../theme';
 import get from 'lodash/get';
+import { TextStyleVariantsMap } from '../../foundation/Text';
 import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
-import { TextStyleVariants } from '../../foundation/Text';
 import { propToStyle } from '../../../theme/Utils/propToStyle';
 
 const ButtonGhost = css`
-  color: ${({ theme, variant }) => get(theme, `colors.${variant}.color`)};
-  background-color: transparent;
+  color: ${(props) => get(props.theme, `colors.${props.variant}.color`)};
+  background: transparent; 
 `;
 
 const ButtonDefault = css`
-  color: ${({ theme, variant }) => get(theme, `colors.${variant}.contrastText`)};
-  background-color: ${({ theme, variant }) => get(theme, `colors.${variant}.color`)};
+  color: white;
+  background-color: ${(props) => get(props.theme, `colors.${props.variant}.color`)};
+  color: ${(props) => get(props.theme, `colors.${props.variant}.contrastText`)};
 `;
 
 export const Button = styled.button`
@@ -21,26 +21,37 @@ export const Button = styled.button`
   padding: 12px 26px;
   font-weight: bold;
   opacity: 1;
+  border-radius: 8px;
+  ${TextStyleVariantsMap.smallestException}
+  ${(props) => {
+    if (props.ghost) {
+      return ButtonGhost;
+    }
+    return ButtonDefault;
+  }}
   transition: opacity ${({ theme }) => theme.transition};
-  border-radius: ${({ theme }) => theme.borderRadius};
-
-  ${propToStyle('margin')}
-  ${propToStyle('display')}
-
-  ${({ ghost }) => (ghost ? ButtonGhost : ButtonDefault)}
+  border-radius: ${(props) => props.theme.borderRadius};
   &:hover,
   &:focus {
     opacity: .5;
   }
-
   ${breakpointsMedia({
-  xs: css`
-      ${TextStyleVariants.smallestException}
+    xs: css`
+      /* All devices */
+      ${TextStyleVariantsMap.smallestException}
     `,
-  md: css`
-      padding: 12px 43px;
-      ${TextStyleVariants.paragraph1}
+    md: css`
+     /* From md breakpoint */
+     ${TextStyleVariantsMap.paragraph1}
     `,
-})}
-`
-
+  })}
+  &:disabled {
+    cursor: not-allowed;
+    opacity: .2;
+  }
+  ${({ fullWidth }) => fullWidth && css`
+    width: 100%;
+  `};
+  ${propToStyle('margin')}
+  ${propToStyle('display')}
+`;
