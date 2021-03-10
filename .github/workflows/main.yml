@@ -28,5 +28,7 @@ jobs:
         run: echo Hello, world!
       - name: Node version
         run: node -v
+      - name: Rodar Depencias
+        run: yarn install
         
         
