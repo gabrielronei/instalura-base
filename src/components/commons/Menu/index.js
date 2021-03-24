@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Logo } from '../../../theme/Logo';
 import Text from '../../foundation/Text';
 import { Button } from '../Button';
 import { MenuWrapper } from './styles/MenuWrapper';
 
-export default function Menu() {
+export default function Menu({ onCadastrarClick }) {
   const [isModalOpen, setModalState] = useState(false);
   const links = [
     {
@@ -13,11 +14,11 @@ export default function Menu() {
     },
     {
       texto: 'Perguntas Frequentes',
-      url: '/',
+      url: '/faq',
     },
     {
       texto: 'Sobre',
-      url: '/',
+      url: '/sobre',
     },
   ];
 
@@ -42,11 +43,15 @@ export default function Menu() {
       </MenuWrapper.CentralSide>
 
       <MenuWrapper.RightSide>
-        <Button ghost variant="secondary.main">Entrar</Button>
-        <Button variant="primary.main">
+        <Button ghost variant="secondary.main" href="/app/login">Entrar</Button>
+        <Button variant="primary.main" onClick={onCadastrarClick}>
           Cadastrar
-          </Button>
+        </Button>
       </MenuWrapper.RightSide>
     </MenuWrapper>
   )
 }
+
+Menu.propTypes = {
+  onCadastrarClick: PropTypes.func.isRequired,
+};
