@@ -6,6 +6,7 @@ import Menu from '../../commons/Menu';
 import Footer from '../../commons/Footer';
 import Modal from '../../commons/Modal';
 import FormCadastro from '../../patterns/FormCadastro';
+import { SEO } from '../../commons/SEO';
 
 export default function FAQScreen({ faqCategories }) {
   const [isModalOpen, setModalState] = React.useState(false);
@@ -16,6 +17,7 @@ export default function FAQScreen({ faqCategories }) {
       flexDirection="column"
       flex="1"
     >
+      <SEO headTitle="FAQ" />
       <Modal
         isOpen={isModalOpen}
         onClose={() => {
