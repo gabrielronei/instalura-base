@@ -1,12 +1,16 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
-export function SEO({ headTitle }) {
-    const pageTitleDefault = 'Instalura ';
+export default function SEO({ headTitle }) {
+    const baseTitle = 'Instalura - Projeto Base do Alura Bootcamp JAMStack';
     const hasHeadTitle = Boolean(headTitle);
     const title = hasHeadTitle
-        ? (`${headTitle} | ${pageTitleDefault}`)
-        : (pageTitleDefault);
+    ? (`${headTitle} | ${baseTitle}`)
+    : baseTitle;
+
+    const description = 'Aprenda Programação, Front-end, Data Science, UX, DevOps, Marketing, Inovação e Gestão na maior plataforma de tecnologia do Brasil';
+    const image = 'https://www.alura.com.br/assets/img/alura-share.1571848411.png';
+    const urlBase = 'urldomeuprojeto.com.br';
 
 
     return (
@@ -18,7 +22,7 @@ export function SEO({ headTitle }) {
                 rel="stylesheet"
             />
             <meta name="title" content={title} />
-            <meta name="description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!" />
+            <meta name="description" content={description} />
 
             {/* <!-- Open Graph / Facebook --> */}
             <meta property="og:type" content="website" />

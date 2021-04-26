@@ -7,11 +7,12 @@ import { SEO } from '../src/components/commons/SEO';
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <SEO />
-      <ThemeProvider theme={theme}>
+      {/* <SEO /> */}
+      {/* <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      
+      </ThemeProvider> */}
+      <Component {...pageProps} />
     </>
   )
 }

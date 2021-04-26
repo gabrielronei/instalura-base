@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import styled, { css } from 'styled-components';
 import { propToStyle } from '../../../theme/Utils/propToStyle';
 import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
-import { Link } from '../../commons/Link';
+import Link from '../../commons/Link';
 
 export const TextStyleVariantsMap = {
   paragraph1: css`
@@ -50,13 +50,12 @@ export default function Text({
   href,
   ...props
 }) {
-
   if (href) {
     return (
       <TextBase
         as={Link}
-        variant={variant}
         href={href}
+        variant={variant}
         {...props}
       >
         {children}
@@ -80,9 +79,9 @@ export default function Text({
 
 Text.propTypes = {
   tag: PropTypes.string,
+  href: PropTypes.string,
   variant: PropTypes.string,
   children: PropTypes.node,
-  href: PropTypes.string,
 };
 
 Text.defaultProps = {
@@ -91,3 +90,7 @@ Text.defaultProps = {
   children: null,
   href: '',
 };
+
+// p
+// h1, h2 ... h6
+// span
